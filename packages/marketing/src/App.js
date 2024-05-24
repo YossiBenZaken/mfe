@@ -1,11 +1,13 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import {unstable_ClassNameGenerator as CNG} from '@mui/material/className';
 import Landing from "./components/Landing";
 import Pricing from "./components/Pricing";
 import { ThemeProvider, createTheme } from "@mui/material";
 
 const theme = createTheme();
+
+CNG.configure((componentName) => `ma-${componentName}`);
 
 const App = () => {
   return (
