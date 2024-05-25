@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate,
+  useNavigate,
 } from "react-router-dom";
 import { unstable_ClassNameGenerator as CNG } from "@mui/material/className";
 import { ThemeProvider, createTheme } from "@mui/material";
