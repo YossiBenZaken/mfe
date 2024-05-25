@@ -5,7 +5,7 @@ import App from "./App";
 // Mount function to start up the app
 export const mount = (el) => {
   const root = createRoot(el);
-  root.render(<App history={history} />);
+  root.render(<App />);
 };
 
 // If we are in development and in isolation

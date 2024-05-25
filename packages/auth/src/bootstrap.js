@@ -3,9 +3,9 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 
 // Mount function to start up the app
-export const mount = (el) => {
+export const mount = (el, { onSignIn }) => {
   const root = createRoot(el);
-  root.render(<App history={history} />);
+  root.render(<App onSignIn={onSignIn} />);
 };
 
 // If we are in development and in isolation

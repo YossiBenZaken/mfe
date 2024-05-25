@@ -1,12 +1,14 @@
-import {mount} from "auth/AuthApp";
-import React, {useEffect, useRef} from "react";
+import { mount } from "auth/AuthApp";
+import React, { useEffect, useRef } from "react";
 
-export default () => {
-    const ref = useRef(null);
+export default ({ onSignIn }) => {
+  const ref = useRef(null);
 
-    useEffect(() => {
-        mount(ref.current);
-    }, []);
-    
-    return <div ref={ref} />;
-}
+  useEffect(() => {
+    mount(ref.current, {
+      onSignIn,
+    });
+  }, []);
+
+  return <div ref={ref} />;
+};

@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState, lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Progress from "./components/Progress";
@@ -9,19 +9,27 @@ CNG.configure((componentName) => `co-${componentName}`);
 
 const theme = createTheme();
 
-const MarketingApp = React.lazy(() => import("./components/MarketingApp"));
-const AuthApp = React.lazy(() => import("./components/AuthApp"));
+const MarketingLazy = lazy(() => import("./components/MarketingApp"));
+const AuthLazy = lazy(() => import("./components/AuthApp"));
 
 export default function App() {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter basename="">
-        <Header />
+        <Header
+          isSignedIn={isSignedIn}
+          onSignOut={() => setIsSignedIn(false)}
+        />
         <Suspense fallback={<Progress />}>
           <div>
             <Routes>
-              <Route path="/auth/*" element={<AuthApp />} />
-              <Route path="/*" element={<MarketingApp />} />
+              <Route
+                path="/auth/*"
+                element={<AuthLazy onSignIn={() => setIsSignedIn(true)} />}
+              />
+              <Route path="/*" element={<MarketingLazy />} />
             </Routes>
           </div>
         </Suspense>
